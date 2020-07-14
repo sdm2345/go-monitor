@@ -2,7 +2,9 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	monitor "github.wdf.sap.corp/Eureka/dev-git-monitor-libs"
+
+	"github.com/sdm2345/go-monitor/plugin-gin"
+
 	"math/rand"
 	"net/http"
 	"time"
@@ -12,12 +14,10 @@ import (
 func main() {
 	r := gin.Default()
 
-	monitor.RegisterGin(r, monitor.MonitorConf{
-		Path: "/metrics",
-	})
+	plugin_gin.RegisterGin(r, plugin_gin.WithPath("/metrics"))
 
 	r.GET("/", func(c *gin.Context) {
-		time.Sleep(time.Second*time.Duration(rand.Int31n(3)))
+		time.Sleep(time.Second * time.Duration(rand.Int31n(3)))
 		c.String(http.StatusOK, "hello world")
 	})
 
