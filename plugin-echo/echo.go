@@ -1,15 +1,15 @@
-package plugin_gin
+package plugin_echo
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/labstack/echo/v4"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sdm2345/go-monitor/monitor"
 	metrics "github.com/slok/go-http-metrics/metrics/prometheus"
 	"github.com/slok/go-http-metrics/middleware"
-	ginmiddleware "github.com/slok/go-http-metrics/middleware/gin"
+	echomiddleware "github.com/slok/go-http-metrics/middleware/echo"
 )
 
-func Init(r *gin.Engine, options ...monitor.Option) {
+func Init(r *echo.Echo, options ...monitor.Option) {
 
 	conf := monitor.NewDefaultConf(options)
 
@@ -17,7 +17,7 @@ func Init(r *gin.Engine, options ...monitor.Option) {
 		Recorder: metrics.NewRecorder(metrics.Config{}),
 	})
 
-	r.Use(ginmiddleware.Handler("", m))
-	r.GET(conf.Path, gin.WrapH(promhttp.Handler()))
+	r.Use(echomiddleware.Handler("", m))
+	r.GET(conf.Path, echo.WrapHandler(promhttp.Handler()))
 
 }

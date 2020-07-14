@@ -4,6 +4,7 @@ import (
 	"github.com/emicklei/go-restful"
 	restfulspec "github.com/emicklei/go-restful-openapi"
 	"github.com/go-openapi/spec"
+	"github.com/sdm2345/go-monitor/monitor"
 	plugin_rest "github.com/sdm2345/go-monitor/plugin-rest"
 	"log"
 	"net/http"
@@ -12,7 +13,8 @@ import (
 func main() {
 	u := UserResource{map[string]User{}}
 	restful.DefaultContainer.Add(u.WebService())
-	plugin_rest.RegisterRest(restful.DefaultContainer, plugin_rest.WithPath("/metrics"))
+
+	plugin_rest.Init(restful.DefaultContainer, monitor.WithPath("/metrics"))
 
 	config := restfulspec.Config{
 		WebServices:                   restful.RegisteredWebServices(), // you control what services are visible

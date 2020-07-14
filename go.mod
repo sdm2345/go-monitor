@@ -7,5 +7,6 @@ require (
 	github.com/gin-gonic/gin v1.6.3
 	github.com/prometheus/client_golang v1.7.1
 	github.com/sirupsen/logrus v1.6.0 // indirect
-	github.com/zsais/go-gin-prometheus v0.1.0
+	//github.com/zsais/go-gin-prometheus v0.1.0
+	github.com/slok/go-http-metrics v0.8.0
 )
