@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/sdm2345/go-monitor/monitor"
-
 	"github.com/sdm2345/go-monitor/plugin-gin"
-
 	"math/rand"
 	"net/http"
 	"time"
