@@ -1,4 +1,4 @@
-module github.com/sdm2345/go-monitor
+module github.wdf.sap.corp/Eureka/dev-go-monitor
 
 go 1.14
 
